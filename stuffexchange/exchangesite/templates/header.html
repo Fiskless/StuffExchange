@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-md">
+    <a class="navbar-brand " href="/">StuffExchange</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'exchangesite:add_good' %}">Хочу обменять</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" href="/">Хотят обменять</a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'exchangesite:offers' %}">Мне предлагают</a>
+        </li>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'exchangesite:user' user_id=user.id %}">Мой профиль</a>
+        </li>
+        {% endif %}
+        {% if not request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'exchangesite:login' %}">Логин</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'exchangesite:register' %}">Регистрация</a>
+        </li>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'exchangesite:logout' %}">Выйти</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
